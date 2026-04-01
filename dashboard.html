@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Video Money</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background: linear-gradient(45deg, #ff6b6b, #feca57);">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="#">
+                <i class="fas fa-video me-2"></i>Video Money
+            </a>
+            <div class="navbar-nav ms-auto align-items-center">
+                <div class="d-flex align-items-center me-4">
+                    <i class="fas fa-wallet fs-5 me-2 text-white"></i>
+                    <span class="badge bg-light text-dark fs-6 fw-bold" id="balance">Rp 25.500</span>
+                </div>
+                <a href="withdraw.html" class="btn btn-light btn-sm me-2">
+                    <i class="fas fa-money-bill-wave me-1"></i>Tarik Uang
+                </a>
+                <button class="btn btn-outline-light btn-sm" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid py-4 px-3 px-lg-5">
+        <!-- Stats Cards -->
+        <div class="row g-4 mb-5">
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm h-100 text-center gradient-card">
+                    <div class="card-body py-4">
+                        <i class="fas fa-wallet fa-2x text-white mb-3"></i>
+                        <h4 class="text-white fw-bold mb-1" id="totalBalance">Rp 25.500</h4>
+                        <p class="text-white-50 mb-0">Saldo Saat Ini</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm h-100 text-center gradient-card-blue">
+                    <div class="card-body py-4">
+                        <i class="fas fa-coins fa-2x text-white mb-3"></i>
+                        <h4 class="text-white fw-bold mb-1" id="totalEarned">Rp 125.000</h4>
+                        <p class="text-white-50 mb-0">Total Penghasilan</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm h-100 text-center gradient-card-green">
+                    <div class="card-body py-4">
+                        <i class="fas fa-play-circle fa-2x text-white mb-3"></i>
+                        <h4 class="text-white fw-bold mb-1" id="videosWatched">127</h4>
+                        <p class="text-white-50 mb-0">Video Ditonton</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm h-100 text-center gradient-card-purple">
+                    <div class="card-body py-4">
+                        <i class="fas fa-trophy fa-2x text-white mb-3"></i>
+                        <h4 class="text-white fw-bold mb-1">Level 5</h4>
+                        <p class="text-white-50 mb-0">Pengguna VIP</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Videos Section -->
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="fw-bold mb-0">
+                        <i class="fas fa-play-circle text-warning me-2"></i>
+                        Tonton Video Baru
+                    </h3>
+                    <span class="badge bg-success fs-6">+Rp10.000/hari</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4" id="videosContainer">
+            <!-- Video Cards akan dimuat oleh JavaScript -->
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        loadVideos();
+    </script>
+</body>
+</html>
