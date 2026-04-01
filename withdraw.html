@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarik Saldo - Video Money</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background: linear-gradient(45deg, #ff6b6b, #feca57);">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="dashboard.html">
+                <i class="fas fa-video me-2"></i>Video Money
+            </a>
+            <div class="navbar-nav ms-auto align-items-center">
+                <div class="d-flex align-items-center me-4">
+                    <i class="fas fa-wallet fs-5 me-2 text-white"></i>
+                    <span class="badge bg-light text-dark fs-6 fw-bold" id="balance">Rp 25.500</span>
+                </div>
+                <a href="dashboard.html" class="btn btn-light btn-sm me-2">
+                    <i class="fas fa-play-circle me-1"></i>Dashboard
+                </a>
+                <button class="btn btn-outline-light btn-sm" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <!-- Header -->
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="text-center mb-5">
+                    <i class="fas fa-money-bill-wave fa-4x text-warning mb-4"></i>
+                    <h2 class="fw-bold mb-3">Tarik Saldo Anda</h2>
+                    <p class="lead text-muted">Pilih nominal yang ingin ditarik dan konfirmasi via WhatsApp</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Balance Card -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-6 col-md-8">
+                <div class="card border-0 shadow-lg gradient-card text-center text-white p-4 rounded-4">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h1 class="fw-bold mb-1 display-5" id="currentBalance">Rp 25.500</h1>
+                            <p class="mb-0 opacity-75">Saldo Tersedia</p>
+                        </div>
+                        <div class="col-4">
+                            <i class="fas fa-wallet fa-3x opacity-75"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Minimum Withdraw -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-6 col-md-8">
+                <div class="alert alert-info text-center border-0 shadow-sm">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <strong>Minimum Penarikan: Rp 10.000</strong><br>
+                    <small class="text-muted">Proses 1-24 jam via WhatsApp</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Withdraw Form -->
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                    <div class="card-header bg-gradient text-white text-center py-4">
+                        <i class="fas fa-credit-card fa-2x mb-2"></i>
+                        <h5 class="fw-bold mb-0">Form Penarikan</h5>
+                    </div>
+                    <div class="card-body p-5">
+                        <form id="withdrawForm">
+                            <!-- Amount Selection -->
+                            <div class="mb-4">
+                                <label class="form-label fw-bold fs-5 mb-3 d-block">Pilih Nominal</label>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-6">
+                                        <button type="button" class="btn btn-outline-warning w-100 p-4 rounded-3 amount-btn active" data-amount="10000">
+                                            <div class="h5 fw-bold mb-1">Rp 10.000</div>
+                                            <small class="text-muted">Minimum</small>
+                                        </button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="button" class="btn btn-outline-warning w-100 p-4 rounded-3 amount-btn" data-amount="25000">
+                                            <div class="h5 fw-bold mb-1">Rp 25.000</div>
+                                            <small class="text-muted">Populer</small>
+                                        </button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="button" class="btn btn-outline-warning w-100 p-4 rounded-3 amount-btn" data-amount="50000">
+                                            <div class="h5 fw-bold mb-1">Rp 50.000</div>
+                                            <small class="text-muted">VIP</small>
+                                        </button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="button" class="btn btn-outline-warning w-100 p-4 rounded-3 amount-btn" data-amount="100000">
+                                            <div class="h5 fw-bold mb-1">Rp 100.000</div>
+                                            <small class="text-muted">Max</small>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-warning">
+                                        <i class="fas fa-coins text-warning"></i>
+                                    </span>
+                                    <input type="number" class="form-control border-warning fw-bold fs-5 text-end" 
+                                           id="customAmount" placeholder="Rp 0" min="10000" max="25500">
+                                    <button class="btn btn-warning" type="button" id="useCustom">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </div>
+                                <div id="amountError" class="invalid-feedback d-block"></div>
+                            </div>
+
+                            <!-- WhatsApp Number -->
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">No WhatsApp Penerima</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light">
+                                        <i class="fab fa-whatsapp text-success"></i>
+                                    </span>
+                                    <input type="tel" class="form-control" id="whatsappNumber" 
+                                           placeholder="08xxxxxxxxx" value="081234567890">
+                                </div>
+                                <div class="form-text">Pastikan nomor benar untuk menghindari kesalahan transfer</div>
+                            </div>
+
+                            <!-- Withdraw Button -->
+                            <button type="submit" class="btn btn-warning btn-lg w-100 fw-bold py-3 rounded-3 shadow-lg" id="withdrawBtn" disabled>
+                                <i class="fas fa-paper-plane me-2"></i>
+                                <span id="withdrawText">Kirim Permintaan</span>
+                                <div class="spinner-border spinner-border-sm d-none ms-2" role="status"></div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Withdraw History -->
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-8 col-md-10">
+                <h4 class="fw-bold mb-4 text-center">
+                    <i class="fas fa-history text-muted me-2"></i>Riwayat Penarikan
+                </h4>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Nominal</th>
+                                <th>WhatsApp</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2024-01-15 14:30</td>
+                                <td><strong>Rp 25.000</strong></td>
+                                <td>081234567890</td>
+                                <td>
+                                    <span class="badge bg-success">Selesai</span>
+                                </td>
+                                <td><i class="fas fa-check-circle text-success"></i></td>
+                            </tr>
+                            <tr>
+                                <td>2024-01-12 09:15</td>
+                                <td><strong>Rp 10.000</strong></td>
+                                <td>081234567890</td>
+                                <td>
+                                    <span class="badge bg-warning">Diproses</span>
+                                </td>
+                                <td><i class="fas fa-clock text-warning"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Modal -->
+    <div class="modal fade" id="whatsappModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4">
+                <div class="modal-header border-0 bg-success text-white rounded-top-4">
+                    <i class="fab fa-whatsapp fa-2x me-2"></i>
+                    <h5 class="modal-title fw-bold mb-0">Konfirmasi Penarikan</h5>
+                </div>
+                <div class="modal-body p-4 text-center">
+                    <i class="fas fa-check-circle fa-4x text-success mb-4"></i>
+                    <h6 id="confirmAmount" class="fw-bold mb-3"></h6>
+                    <p class="text-muted mb-4">Permintaan penarikan Anda telah dikirim ke admin. Silakan tunggu konfirmasi dalam 24 jam.</p>
+                    <div class="alert alert-info">
+                        <i class="fab fa-whatsapp me-2"></i>
+                        <strong>Klik tombol WhatsApp untuk chat admin:</strong>
+                    </div>
+                    <a href="https://wa.me/6281234567890?text=Saya%20mengajukan%20penarikan%20Rp25.000%20dari%20Video%20Money.%0AUsername:%20user123%0ANo.WA:%20081234567890" 
+                       class="btn btn-success btn-lg w-100 mb-3" target="_blank">
+                        <i class="fab fa-whatsapp me-2"></i>Chat Admin WhatsApp
+                    </a>
+                </div>
+                <div class="modal-footer border-0 justify-content-center">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Withdraw Logic
+        let selectedAmount = 10000;
+        const balance = 25500;
+        const minWithdraw = 10000;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateBalance();
+            initAmountButtons();
+            initWithdrawForm();
+        });
+
+        function updateBalance() {
+            document.getElementById('currentBalance').textContent = formatRupiah(balance);
+            document.getElementById('balance').textContent = formatRupiah(balance);
+        }
+
+        function formatRupiah(amount) {
+            return 'Rp ' + amount.toLocaleString('id-ID');
+        }
+
+        function initAmountButtons() {
+            document.querySelectorAll('.amount-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    selectedAmount = parseInt(this.dataset.amount);
+                    document.getElementById('customAmount').value = '';
+                    validateAmount();
+                });
+            });
+
+            document.getElementById('useCustom').addEventListener('click', function() {
+                const custom = parseInt(document.getElementById('customAmount').value);
+                if (custom && custom >= minWithdraw && custom <= balance) {
+                    selectedAmount = custom;
+                    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+                    validateAmount();
+                }
+            });
+        }
+
+        function validateAmount() {
+            const amountField = document.getElementById('customAmount');
+            const errorDiv = document.getElementById('amountError');
+            const withdrawBtn = document.getElementById('withdrawBtn');
+            
+            if (selectedAmount < minWithdraw) {
+                errorDiv.textContent = `Minimum penarikan Rp ${formatRupiah(minWithdraw)}`;
+                withdrawBtn.disabled = true;
+                return;
+            }
+            
+            if (selectedAmount > balance) {
+                errorDiv.textContent = `Saldo tidak mencukupi. Saldo Anda: ${formatRupiah(balance)}`;
+                withdrawBtn.disabled = true;
+                return;
+            }
+            
+            errorDiv.textContent = '';
+            withdrawBtn.disabled = false;
+        }
+
+        function initWithdrawForm() {
+            const form = document.getElementById('withdrawForm');
+            const customInput = document.getElementById('customAmount');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const whatsapp = document.getElementById('whatsappNumber').value;
+                
+                if (!whatsapp.match(/^08[0-9]{8,12}$/)) {
+                    alert('Format nomor WhatsApp tidak valid!');
+                    return;
+                }
+                
+                submitWithdraw(selectedAmount, whatsapp);
+            });
+            
+            customInput.addEventListener('input', validateAmount);
+        }
+
+        function submitWithdraw(amount, whatsapp) {
+            const btn = document.getElementById('withdrawBtn');
+            const spinner = btn.querySelector('.spinner-border');
+            const text = document.getElementById('withdrawText');
+            
+            // Show loading
+            btn.disabled = true;
+            spinner.classList.remove('d-none');
+            text.textContent = 'Memproses...';
+            
+            // Simulate API call
+            setTimeout(() => {
+                document.getElementById('confirmAmount').textContent = formatRupiah(amount);
+                
+                // Update balance
+                currentUser.balance -= amount;
+                updateBalance();
+                
+                // Show success modal
+                const modal = new bootstrap.Modal(document.getElementById('whatsappModal'));
+                modal.show();
+                
+                // Reset form
+                document.querySelector('.amount-btn.active').click();
+                document.getElementById('whatsappNumber').value = '';
+                btn.disabled = false;
+                spinner.classList.add('d-none');
+                text.textContent = 'Kirim Permintaan';
+            }, 2000);
+        }
+
+        function logout() {
+            if (confirm('Yakin ingin logout?')) {
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>
