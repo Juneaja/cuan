@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Money - Tonton Video Dapat Uang</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section min-vh-100 d-flex align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8 text-center text-white">
+                    <div class="hero-content animate__animated animate__fadeInUp">
+                        <i class="fas fa-video fa-4x mb-4 text-warning"></i>
+                        <h1 class="display-4 fw-bold mb-4">Video Money</h1>
+                        <p class="lead mb-5">Tonton video pendek, dapatkan uang tunai setiap hari!</p>
+                        
+                        <!-- Auth Buttons -->
+                        <div class="d-flex gap-3 justify-content-center flex-wrap">
+                            <button class="btn btn-warning btn-lg px-5 fw-bold shadow-lg" onclick="showLogin()">
+                                <i class="fas fa-sign-in-alt me-2"></i>Login
+                            </button>
+                            <button class="btn btn-outline-light btn-lg px-5 fw-bold shadow-lg" onclick="showRegister()">
+                                <i class="fas fa-user-plus me-2"></i>Daftar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auth Modal -->
+    <div class="modal fade" id="authModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 shadow-lg border-0">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="modalTitle">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="authForm">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Username/Email</label>
+                            <input type="text" class="form-control rounded-3" id="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Password</label>
+                            <input type="password" class="form-control rounded-3" id="password" required>
+                        </div>
+                        <div id="whatsappField" class="mb-3" style="display: none;">
+                            <label class="form-label fw-bold">No WhatsApp</label>
+                            <input type="text" class="form-control rounded-3" id="whatsapp" placeholder="08xxxxxxxxx">
+                        </div>
+                        <button type="submit" class="btn btn-warning w-100 fw-bold rounded-3 shadow-sm">
+                            <span id="btnText">Masuk</span>
+                            <i class="fas fa-spinner fa-spin d-none" id="loadingSpinner"></i>
+                        </button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <small class="text-muted">
+                            <span id="toggleText">Belum punya akun? <a href="#" class="text-warning fw-bold" onclick="toggleAuth()">Daftar</a></span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="display-5 fw-bold text-dark mb-4">Mengapa Pilih Video Money?</h2>
+                    <p class="lead text-muted">Aplikasi paling terpercaya untuk menghasilkan uang dari menonton video</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="text-center p-4 h-100">
+                        <i class="fas fa-wallet fa-3x text-warning mb-3"></i>
+                        <h5 class="fw-bold">Payout Instan</h5>
+                        <p class="text-muted">Tarik uang kapan saja via WhatsApp</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="text-center p-4 h-100">
+                        <i class="fas fa-clock fa-3x text-warning mb-3"></i>
+                        <h5 class="fw-bold">Video Pendek</h5>
+                        <p class="text-muted">Hanya 30 detik per video</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="text-center p-4 h-100">
+                        <i class="fas fa-coins fa-3x text-warning mb-3"></i>
+                        <h5 class="fw-bold">Rp10.000/Hari</h5>
+                        <p class="text-muted">Potensi penghasilan harian</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="text-center p-4 h-100">
+                        <i class="fas fa-users fa-3x text-warning mb-3"></i>
+                        <h5 class="fw-bold">100K+ Pengguna</h5>
+                        <p class="text-muted">Bergabung dengan komunitas besar</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
